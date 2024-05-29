@@ -12,23 +12,37 @@ html, body {
 
 
 
-
 .header-message {
-    color: #fff;
-    font-size: 24px;
+    color: whitesmoke;
+    font-size: 21px;
     font-family: Poetsen One;
-    margin-bottom: 20px;
-    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    max-width: 790px;
+
+    p{
+        font-family: Karla;
+        font-size: 14px;
+        padding: 0 10px;
+        margin-left: 15px;
+    }
+
+    h1{
+        margin: 0;
+        margin-left: 15px;
+    }
 }
 
 .glass-container {
     position: relative;
     width: 800px;
     height: 494px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
 }
 
 canvas {
+    border-radius: 15px;
     position: absolute;
     top: 0;
     left: 0;
@@ -44,17 +58,79 @@ canvas {
     display: flex;
     justify-content: center;
     width: 800px; 
+}
 
 button {
     flex-grow: 1;
+    background-color: transparent;
+    font-family: Karla;
     padding: 10px 20px;
     margin: 5px;
-    background-color: #444;
     color: #fff;
-    border: none;
     cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #C5675B;
+    border: none;
+
+}
+
+.citybtn{
+    background-color: #C5675B;
+    border: none;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #666;
+    background-color: #FF8A78;
+}
+
+
+/*small screen*/
+
+@media (max-width: 768px) {
+  body {
+    height: 100vh;
+    background-color: lightblue;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .header-message{
+    flex-direction: column;
+    max-width: fit-content;
+    margin-block-start: -15em;
+  }
+
+  .glass-container {
+        width: 100vw;
+        left: -20px;
+        height: auto;
+        position: absolute;
+    }
+
+canvas{
+    width: 100%;
+    border-radius: 0;
+    margin-left: 20.5px;
+}
+
+
+.button-container{
+    bottom: 70px;
+    position: absolute;
+    max-width: 95vw;
+    height: auto;
+    z-index: 10;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:column;
+    margin-left: 10px;
+}
+
+
 }

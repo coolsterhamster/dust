@@ -4,13 +4,13 @@ const drawingCtx = drawingCanvas.getContext('2d');
 const backgroundCtx = backgroundCanvas.getContext('2d');
 const clearButton = document.getElementById('clearButton');
 const saveButton = document.getElementById('saveButton');
-const parisButton = document.getElementById('parisButton');
+const copenhagenButton = document.getElementById('copenhagenButton');
 const berlinButton = document.getElementById('berlinButton');
 const londonButton = document.getElementById('londonButton');
 let drawing = false;
 let backgroundImage = new Image();
 
-
+// Add touch event listeners
 drawingCanvas.addEventListener('touchstart', startDrawing);
 drawingCanvas.addEventListener('touchend', stopDrawing);
 drawingCanvas.addEventListener('touchcancel', stopDrawing);
@@ -24,7 +24,7 @@ drawingCanvas.addEventListener('mousemove', draw);
 clearButton.addEventListener('click', clearCanvas);
 saveButton.addEventListener('click', saveCanvas);
 
-parisButton.addEventListener('click', () => changeBackground('paris'));
+copenhagenButton.addEventListener('click', () => changeBackground('copenhagen'));
 berlinButton.addEventListener('click', () => changeBackground('berlin'));
 londonButton.addEventListener('click', () => changeBackground('london'));
 
@@ -46,11 +46,11 @@ function draw(event) {
     const y = (event.clientY || event.touches[0].clientY) - rect.top;
 
     const opacity = Math.random();
-    const greyColor = `rgba(128, 128, 128, ${opacity})`;
+    const penColor = `rgba(245, 245, 245, ${opacity})`;
 
-    drawingCtx.lineWidth = 10;
+    drawingCtx.lineWidth = 15;
     drawingCtx.lineCap = 'round';
-    drawingCtx.strokeStyle = greyColor;
+    drawingCtx.strokeStyle = penColor;
 
     drawingCtx.lineTo(x, y);
     drawingCtx.stroke();
@@ -88,38 +88,40 @@ function changeBackground(city) {
     let imageUrl = '';
 
     switch(city) {
-        case 'paris':
-            imageUrl = 'images/paris.png';
+        case 'copenhagen':
+            imageUrl = 'images/copenhagen.jpg';
             break;
         case 'berlin':
             imageUrl = 'images/berlin.jpg';
             break;
         case 'london':
-            imageUrl = 'images/london.png';
+            imageUrl = 'images/london.jpg';
             break;
     }
 
     console.log(`Loading image: ${imageUrl}`);
     backgroundImage.src = imageUrl;
     backgroundImage.onload = () => {
-        console.log(`Image loaded: ${imageUrl}`);
+        console.log(`Image loaded: ${imageUrl}`); 
         drawBackground();
     };
     backgroundImage.onerror = (error) => {
-        console.error(`Error loading image: ${imageUrl}`, error);
+        console.error(`Error loading image: ${imageUrl}`, error); 
     };
 }
 
 function drawBackground() {
     backgroundCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    backgroundCtx.filter = 'blur(8px)';
+    backgroundCtx.filter = 'blur(5px)';
     backgroundCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
     changeBackground('berlin');
 });
+
 
 
 

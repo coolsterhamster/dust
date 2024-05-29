@@ -1,27 +1,32 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght@100..900&family=Poetsen+One&family=Tsukimi+Rounded&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+TC:wght@100..900&family=Poetsen+One&family=Tsukimi+Rounded&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>windowpane</title>
 </head>
 <body>
 	<div class="box">
-		<div id="header-message" class="header-message">Welcome to the Windowpane App</div>
+		<div id="header-message" class="header-message">
+			<h1>elvágyódás</h1>
+			<p>this word captures a wanderlust yearning, to escape to another place or time, a longing for the unknown or the distant.
+			we invites you to sketch your memory of funky moments in the cities with creative expression.</p>
+		</div>
 		<div class="frame">
 			<div class="glass-container">
 			    <canvas id="backgroundCanvas" width="800" height="494"></canvas>
 			    <canvas id="drawingCanvas" width="800" height="494" margin="40px;"></canvas>
 			</div>
 			<div class="button-container">
-			    <button id="clearButton">Clear</button>
-			    <button id="saveButton">Save</button>
-			    <button id="parisButton">Paris</button>
-			    <button id="berlinButton">Berlin</button>
-			    <button id="londonButton">London</button>
+			    <button id="clearButton" class="btn">Clear</button>
+			    <button id="saveButton" class="btn">Save</button>
+			    <button id="copenhagenButton" class="citybtn">CPH</button>
+			    <button id="berlinButton" class="citybtn">BER</button>
+			    <button id="londonButton" class="citybtn">LDN</button>
+			</div>
+			<div class="explain">
 			</div>
 		</div>
 	</div>
