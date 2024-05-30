@@ -96,8 +96,8 @@ button:hover {
     background-color: lightblue;
     flex-direction: column;
     align-items: center;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
   .header-message{
@@ -114,7 +114,6 @@ button:hover {
     }
 
 canvas{
-    width: 100%;
     border-radius: 0;
     margin-left: 20.5px;
 }
