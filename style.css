@@ -38,7 +38,7 @@ html, body {
     position: relative;
     width: 800px;
     height: 494px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 canvas {
@@ -131,6 +131,5 @@ canvas{
     flex-direction:column;
     margin-left: 10px;
 }
-
 
 }
