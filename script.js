@@ -10,16 +10,16 @@ const londonButton = document.getElementById('londonButton');
 let drawing = false;
 let backgroundImage = new Image();
 
-// Add touch event listeners
-drawingCanvas.addEventListener('touchstart', startDrawing);
-drawingCanvas.addEventListener('touchend', stopDrawing);
-drawingCanvas.addEventListener('touchcancel', stopDrawing);
-drawingCanvas.addEventListener('touchmove', drawTouch);
 
 drawingCanvas.addEventListener('mousedown', startDrawing);
-drawingCanvas.addEventListener('mouseup', stopDrawing);
-drawingCanvas.addEventListener('mouseout', stopDrawing);
 drawingCanvas.addEventListener('mousemove', draw);
+document.addEventListener('mouseup', stopDrawing);
+drawingCanvas.addEventListener('mousemove', draw);
+
+drawingCanvas.addEventListener('touchstart', startDrawing);
+drawingCanvas.addEventListener('touchmove', draw);
+document.addEventListener('touchend', stopDrawing);
+document.addEventListener('touchcancel', stopDrawing);
 
 clearButton.addEventListener('click', clearCanvas);
 saveButton.addEventListener('click', saveCanvas);
@@ -38,15 +38,27 @@ function stopDrawing() {
     drawingCtx.beginPath();
 }
 
+
 function draw(event) {
     if (!drawing) return;
 
     const rect = drawingCanvas.getBoundingClientRect();
-    const x = (event.clientX || event.touches[0].clientX) - rect.left;
-    const y = (event.clientY || event.touches[0].clientY) - rect.top;
+    let x, y;
+
+    if (event.touches && event.touches.length > 0) {
+        x = event.touches[0].clientX - rect.left;
+        y = event.touches[0].clientY - rect.top;
+    } else {
+        x = event.clientX - rect.left;
+        y = event.clientY - rect.top;
+    }
 
     const opacity = Math.random();
     const penColor = `rgba(245, 245, 245, ${opacity})`;
+
+    // Adjust coordinates to match canvas position
+    x *= drawingCanvas.width / rect.width;
+    y *= drawingCanvas.height / rect.height;
 
     drawingCtx.lineWidth = 15;
     drawingCtx.lineCap = 'round';
@@ -58,7 +70,8 @@ function draw(event) {
     drawingCtx.moveTo(x, y);
 }
 
-// Handle touch drawing
+
+
 function drawTouch(event) {
     event.preventDefault();
     draw(event);
@@ -99,10 +112,10 @@ function changeBackground(city) {
             break;
     }
 
-    console.log(`Loading image: ${imageUrl}`); 
+    console.log(`Loading image: ${imageUrl}`);
     backgroundImage.src = imageUrl;
     backgroundImage.onload = () => {
-        console.log(`Image loaded: ${imageUrl}`); 
+        console.log(`Image loaded: ${imageUrl}`);
         drawBackground();
     };
     backgroundImage.onerror = (error) => {
@@ -116,11 +129,10 @@ function drawBackground() {
     backgroundCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
 }
 
-
+// Initialize the glass effect and canvas
 document.addEventListener('DOMContentLoaded', () => {
-    changeBackground('berlin'); 
+    changeBackground('berlin');
 });
-
 
 
 
