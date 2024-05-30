@@ -58,7 +58,7 @@ function draw(event) {
     drawingCtx.moveTo(x, y);
 }
 
-
+// Handle touch drawing
 function drawTouch(event) {
     event.preventDefault();
     draw(event);
@@ -99,14 +99,14 @@ function changeBackground(city) {
             break;
     }
 
-    console.log(`Loading image: ${imageUrl}`);
+    console.log(`Loading image: ${imageUrl}`); 
     backgroundImage.src = imageUrl;
     backgroundImage.onload = () => {
         console.log(`Image loaded: ${imageUrl}`); 
         drawBackground();
     };
     backgroundImage.onerror = (error) => {
-        console.error(`Error loading image: ${imageUrl}`, error); 
+        console.error(`Error loading image: ${imageUrl}`, error);
     };
 }
 
@@ -117,12 +117,9 @@ function drawBackground() {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    changeBackground('berlin');
+    changeBackground('berlin'); 
 });
-
-
 
 
 
